@@ -12,6 +12,7 @@ export default class Form extends Component {
         <label htmlFor="cardName">
           seila
           <input
+            name="cardName"
             onChange={ onInputChange }
             value={ cardName }
             id="cardName"
@@ -23,6 +24,7 @@ export default class Form extends Component {
         <label htmlFor="description">
           Descrição
           <textarea
+            name="cardDescription"
             value={ cardDescription }
             onChange={ onInputChange }
             id="description"
@@ -33,6 +35,7 @@ export default class Form extends Component {
         <label htmlFor="attack">
           CP
           <input
+            name="cardAttr1"
             value={ cardAttr1 }
             onChange={ onInputChange }
             type="number"
@@ -44,6 +47,7 @@ export default class Form extends Component {
         <label htmlFor="defense">
           Defesa
           <input
+            name="cardAttr2"
             value={ cardAttr2 }
             onChange={ onInputChange }
             type="number"
@@ -55,6 +59,7 @@ export default class Form extends Component {
         <label htmlFor="Weight">
           Peso
           <input
+            name="cardAttr3"
             value={ cardAttr3 }
             onChange={ onInputChange }
             type="number"
@@ -66,6 +71,7 @@ export default class Form extends Component {
         <label htmlFor="img">
           URL do seu bicho
           <input
+            name="cardImage"
             value={ cardImage }
             onChange={ onInputChange }
             data-testid="image-input"
@@ -74,7 +80,12 @@ export default class Form extends Component {
           />
         </label>
 
-        <select value={ cardRare } onChange={ onInputChange } data-testid="rare-input">
+        <select
+          value={ cardRare }
+          onChange={ onInputChange }
+          data-testid="rare-input"
+          name="cardRare"
+        >
           <option>normal</option>
           <option>raro</option>
           <option>muito raro</option>
@@ -83,6 +94,7 @@ export default class Form extends Component {
         <label htmlFor="trunfo">
           Super Trunfo
           <input
+            name="cardTrunfo"
             checked={ cardTrunfo }
             onChange={ onInputChange }
             id="trunfo"

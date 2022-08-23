@@ -29,5 +29,5 @@ Card.propTypes = {
   cardAttr3: PropType.string.isRequired,
   cardImage: PropType.string.isRequired,
   cardRare: PropType.string.isRequired,
-  cardTrunfo: PropType.string.isRequired,
+  cardTrunfo: PropType.bool.isRequired,
 };
