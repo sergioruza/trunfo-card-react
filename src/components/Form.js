@@ -6,6 +6,7 @@ export default class Form extends Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, // hasTrunfo,
       isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
+      // console.log(isSaveButtonDisabled);
 
     return (
       <form>

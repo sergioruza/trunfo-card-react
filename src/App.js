@@ -12,11 +12,15 @@ class App extends React.Component {
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
+    isSaveButtonDisabled: true,
   };
 
   onInputChange = ({ target }) => {
     const { value, name, type } = target;
-    this.setState({ [name]: type === 'checkbox' ? target.checked : value });
+    this.setState(
+      { [name]: type === 'checkbox' ? target.checked : value },
+      () => this.isSaveButtonDisabled(),
+    );
   };
 
   isSaveButtonDisabled = () => {
@@ -26,29 +30,34 @@ class App extends React.Component {
 
     const numMax = 90;
     const numMin = 0;
-    const validaInput = cardName && cardDescription && cardImage && cardRare !== '';
+    const validaInput = (cardName.length > 0
+    && cardDescription.length > 0 && cardImage.length > 0 && cardRare.length > 0);
     const maxPontuacao = 210;
-    const validaValor = cardAttr1
-    + cardAttr2 + cardAttr3 < maxPontuacao;
-    const pontosMax = (cardAttr1 < numMax)
-     && (cardAttr2 < numMax) && (cardAttr3 < numMax);
-    const validaNegativo = (cardAttr1 > numMin)
-     && (cardAttr2 > numMin) && (cardAttr3 > numMin);
+    const validaValor = (Number(cardAttr1)
+    + Number(cardAttr2) + Number(cardAttr3)) <= maxPontuacao;
 
+    const pontosMax = (Number(cardAttr1) <= numMax)
+     && (Number(cardAttr2) <= numMax) && (Number(cardAttr3) <= numMax);
+
+    const validaNegativo = (Number(cardAttr1) >= numMin)
+     && (Number(cardAttr2) >= numMin) && (Number(cardAttr3) >= numMin);
+
+    // console.log(validaInput);
+    // console.log(validaValor);
+    // console.log(pontosMax);
+    // console.log(validaNegativo);
+    console.log(validaInput, validaValor, pontosMax, validaNegativo);
     if (validaInput && validaValor && pontosMax && validaNegativo) {
-      this.setState = {
-        button: true,
-      };
+      this.setState({ isSaveButtonDisabled: false });
+    } else {
+      this.setState({ isSaveButtonDisabled: true });
     }
-    this.state = {
-      button: false,
-    };
   };
 
   render() {
     const { state } = this;
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo } = state;
+      cardAttr3, cardImage, cardRare, cardTrunfo, isSaveButtonDisabled } = state;
 
     return (
       <>
@@ -62,7 +71,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
-          isSaveButtonDisabled={ this.isSaveButtonDisabled }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
         />
         <Card
           cardName={ cardName }
