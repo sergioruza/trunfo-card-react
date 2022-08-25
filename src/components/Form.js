@@ -101,7 +101,7 @@ export default class Form extends Component {
             id="trunfo"
             type="checkbox"
             data-testid="trunfo-input"
-          /> }
+          />}
         </label>
 
         <button

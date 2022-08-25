@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 export default class Card extends Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo } = this.props;
+      cardAttr3, cardImage, cardRare, cardTrunfo, teste, removeCard, index } = this.props;
     return (
       <div>
         <h1 data-testid="name-card">{ cardName }</h1>
@@ -15,7 +15,8 @@ export default class Card extends Component {
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <h4 data-testid="rare-card">{ cardRare }</h4>
         {cardTrunfo ? <h4 data-testid="trunfo-card">Super Trunfo</h4> : ''}
-
+        { teste === cardName
+          ? <button onClick={ () => removeCard(index) } type="button" data-testid="delete-button">Excluir</button> : ''}
       </div>
     );
   }
@@ -30,4 +31,7 @@ Card.propTypes = {
   cardImage: PropType.string.isRequired,
   cardRare: PropType.string.isRequired,
   cardTrunfo: PropType.bool.isRequired,
+  teste: PropType.string.isRequired,
+  removeCard: PropType.func.isRequired,
+  index: PropType.number.isRequired,
 };

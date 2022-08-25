@@ -52,7 +52,7 @@ class App extends React.Component {
     }
   };
 
-  onSaveButtonClick = (info) => {
+  onSaveButtonClick = (info) => { // ==============> referenciando ajuda de Arthur Debiasi requisito sete
     this.setState((prev) => ({
       data: [...prev.data, info],
     }), () => {
@@ -69,13 +69,19 @@ class App extends React.Component {
         isSaveButtonDisabled: true,
         hasTrunfo: data.some((element) => element.cardTrunfo),
       });
-      console.log(data.find((element) => element.cardTrunfo));
     });
   };
 
-  // hasTrunfo = () => {
-
-  // };
+  removeCard = (indice) => {
+    console.log(indice);
+    const { data, cardTrunfo } = this.state;
+    const card = data.slice();
+    card.splice(indice, 1);
+    this.setState({
+      data: card,
+      hasTrunfo: cardTrunfo === true,
+    });
+  };
 
   render() {
     const { state } = this;
@@ -110,11 +116,14 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
         />
         {
-          data.map((e) => (<Card
+          data.map((e, index) => (<Card
             key={ e.cardName }
             cardName={ e.cardName }
             cardDescription={ e.cardDescription }
             cardImage={ e.cardImage }
+            teste={ e.cardName }
+            removeCard={ this.removeCard }
+            index={ index }
           />))
         }
       </>
