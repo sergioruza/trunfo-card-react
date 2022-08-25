@@ -13,6 +13,7 @@ class App extends React.Component {
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    data: [],
   };
 
   onInputChange = ({ target }) => {
@@ -42,16 +43,20 @@ class App extends React.Component {
     const validaNegativo = (Number(cardAttr1) >= numMin)
      && (Number(cardAttr2) >= numMin) && (Number(cardAttr3) >= numMin);
 
-    // console.log(validaInput);
-    // console.log(validaValor);
-    // console.log(pontosMax);
-    // console.log(validaNegativo);
-    console.log(validaInput, validaValor, pontosMax, validaNegativo);
+    // suporte da mentoria para resolver bug de onde chamar a função isSaveButtonDisabled
     if (validaInput && validaValor && pontosMax && validaNegativo) {
       this.setState({ isSaveButtonDisabled: false });
     } else {
       this.setState({ isSaveButtonDisabled: true });
     }
+  };
+
+  onSaveButtonClick = (info) => {
+    const { state } = this;
+    const { cardName, cardDescription, cardImage } = state;
+    this.setState((prevState) => ({
+      data: [...prevState.data, info],
+    }));
   };
 
   render() {
@@ -72,6 +77,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
