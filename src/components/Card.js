@@ -5,6 +5,16 @@ export default class Card extends Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, teste, removeCard, index } = this.props;
+
+    const teste2 = (
+      <button
+        onClick={ () => removeCard(index) }
+        type="button"
+        data-testid="delete-button"
+      >
+        Excluir
+      </button>);
+
     return (
       <div>
         <h1 data-testid="name-card">{ cardName }</h1>
@@ -15,8 +25,11 @@ export default class Card extends Component {
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <h4 data-testid="rare-card">{ cardRare }</h4>
         {cardTrunfo ? <h4 data-testid="trunfo-card">Super Trunfo</h4> : ''}
-        { teste === cardName
-          ? <button onClick={ () => removeCard(index) } type="button" data-testid="delete-button">Excluir</button> : ''}
+
+        {
+          (teste === cardName)
+            ? teste2 : ''
+        }
       </div>
     );
   }
