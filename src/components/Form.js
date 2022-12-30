@@ -11,7 +11,7 @@ export default class Form extends Component {
     return (
       <form>
         <label htmlFor="cardName">
-          seila
+          Nome
           <input
             name="cardName"
             onChange={ onInputChange }
